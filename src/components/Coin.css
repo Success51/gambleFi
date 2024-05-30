@@ -1,0 +1,32 @@
+.holder {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.holder .coin-display,
+.holder .points-display {
+    margin: 0 10px;
+    position: relative;
+    min-width: 40px;
+    height: 20px;
+    background-color: #5f504acd; 
+    border-radius: 12px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; 
+    color: rgb(186, 186, 198);
+    font-weight: bold;
+    font-size: 120%;
+}
+
+.holder .coin-display img,
+.holder .points-display img {
+    width: 24px;
+    height: 24px;
+    margin: 1px 5px 0px 0px;
+}

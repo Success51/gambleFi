@@ -1,0 +1,33 @@
+/* src/components/Friends.css */
+
+.friends-page {
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.invite-section {
+    margin-top: 20px;
+}
+
+.invite-section input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.invite-section button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.invite-section button:hover {
+    background-color: #0056b3;
+}

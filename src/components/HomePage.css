@@ -1,0 +1,83 @@
+/* src/components/HomePage.css */
+
+.home-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.banner {
+    text-align: center;
+    background: linear-gradient(90deg, #4e8597 0%, #69956d 100%);
+    color: white;
+    padding: 50px 20px;
+}
+
+.games, .how-it-works {
+    margin: 40px 0;
+}
+
+.games h2, .how-it-works h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+ .game-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+ .game {
+    text-align: center;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.game:hover {
+    transform: scale(1.05);
+}
+
+.game img {
+    width:120px;
+    height: 120px;
+}
+
+.game h3 {
+    margin: 10px 0;
+}
+
+.how-it-works ol {
+    max-width: 600px;
+    margin: 0 auto;
+    padding-left: 20px;
+}
+
+.how-it-works li {
+    margin: 10px 0;
+}
+
+.moreArrow{
+    background-color: none;
+    color: white;
+    margin-left: 20px;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 40px;
+    color: rgb(41, 206, 118);
+    transition: all 0.2s ease-in;
+}
+
+.moreArrow:hover{
+    color: rgb(91, 132, 110);
+    font-size: 52px;
+}
+
+a{
+    color: none ;
+    text-decoration: none;
+}
