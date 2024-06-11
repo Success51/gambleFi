@@ -3,13 +3,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './HomePage.css'; // Import CSS for styling
+import WalletConnect from './WalletConnect';
 
 function HomePage() {
     return (
         <div className="home-page">
             <header className="banner">
-                <h1>Welcome to Telegram GameFi</h1>
-                <p>When there is risk , there is huge reward.</p>
+                <h1>Welcome to GameFi</h1>
+                <p>Best Ever Gambling Platform </p>
             </header>
             
         
@@ -22,14 +23,14 @@ function HomePage() {
                     <div className="game">
                         <Link to="/games/mines" className='game-link'>
                             <img src="/images/mines.png" alt="Mines" />
-                            <p>Play Mines</p>
+                            <p>Mines</p>
                         </Link>
                     </div>
 
                     <div className="game">
-                        <Link to="/games/mines" className='game-link'>
-                            <img src="/images/mines.png" alt="Mines" />
-                            <p>Play Mines</p>
+                        <Link to="/games/BlackJack" className='game-link'>
+                            <img src="/images/mines.png" alt="BlackJack" />
+                            <p>BlackJack</p>
                         </Link>
                     </div>
 

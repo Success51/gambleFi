@@ -1,0 +1,27 @@
+.miningPage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 50px;
+    min-height: 80vh;
+    font-size: 5vw;
+}
+
+.mineBTN{
+    min-width: 40vw;
+    aspect-ratio: 1;
+    font-size: 150%;
+    position: relatives;
+    cursor: pointer;
+    border-radius: 100%;
+    transition: all 5s ease-in-out;
+    box-shadow: linear-gradient(90deg, #4e8597 0%, #69956d 100%);
+}
+.btn_grp{
+    margin-top: 160px;
+}
+
+.mineBTN:active{
+    transform: rotateZ(10000rad);
+}

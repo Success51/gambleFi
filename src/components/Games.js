@@ -13,13 +13,13 @@ function Games() {
                     <div className="game">
                         <Link to="/games/mines" className='game-link'>
                             <img src="/images/mines.png" alt="Mines" />
-                            <p>Play Mines</p>
+                            <p>Mines</p>
                         </Link>
                     </div>
                     <div className="game">
-                        <Link to="/games/mines" className='game-link'>
-                            <img src="/images/mines.png" alt="mines" />
-                            <p>Game 2</p>
+                        <Link to="/games/blackjack" className='game-link'>
+                            <img src="/images/mines.png" alt="Black Jack" />
+                            <p>Black Jack</p>
                         </Link>
                     </div>
                     {/* Add more games as needed */}

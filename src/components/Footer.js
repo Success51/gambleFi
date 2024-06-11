@@ -12,7 +12,7 @@ function Footer() {
                     <li><Link to="/homepage">Home</Link></li>
                     <li><Link to="/games">Games</Link></li>
                     <li><Link to="/friends">Friends</Link></li>
-                    <li><Link to="/mine">Mine</Link></li>
+                    <li><Link to="/mining">Mine</Link></li>
                     {/* Add more links as needed */}
                 </ul>
             </nav>

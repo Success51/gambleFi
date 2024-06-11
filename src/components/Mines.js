@@ -7,14 +7,16 @@ function Mines({ updateCoins, coins }) {
     const [board, setBoard] = useState([]);
     const [gameOver, setGameOver] = useState(false);
     const [numMines, setNumMines] = useState(1); // Default number of mines
-    const [betAmount, setBetAmount] = useState(0); // Default bet amount
+    const [betAmount, setBetAmount] = useState(1); // Default bet amount
     const [hasStarted, setHasStarted] = useState(false);
     const [profitBoxStyle, setProfitBoxStyle] = useState("none");
-    const [profitAmount, setProfitAmount] = useState(0);
+    const [profitAmount, setProfitAmount] = useState(betAmount);
     const [buttonText, setButtonText] = useState("Bet");
     const [gemOpened, setGemOpened] = useState(1);
+    const [showCashoutBox, setShowCashoutBox] = useState(false);
+    const [multiplier, setMultiplier] = useState(1);
 
-    let profitVar, multiplier;
+    let profitVar;
 
     useEffect(() => {
         const initialBoard = createBoard(5, 5, numMines); // Create a 5x5 board with the specified number of mines
@@ -39,27 +41,35 @@ function Mines({ updateCoins, coins }) {
 
         return board;
     }
-    function cashOut(){
-        if(profitAmount <= betAmount) return;
-        const newBoard = board.map(row => row.map(cell => ({ ...cell })));
-        
-        updateCoins(+profitAmount);
-        
-        revealAllCells(newBoard);
-        setBoard(newBoard);
 
+    function cashOut(row , col) {
+        if (profitAmount <= betAmount && profitAmount != 0 ) return;
+        
+        updateCoins(profitAmount);
+        setShowCashoutBox(true);
+        
         setGameOver(true);
         setHasStarted(false);
         setButtonText("Bet");
         setProfitBoxStyle("none");
+        const newBoard = board.map(row => row.map(cell => ({ ...cell })));
+        revealAllCells(newBoard);
+
     }
 
     function startGame() {
-        if (hasStarted) {cashOut(); return;}
+        if (hasStarted) {
+            cashOut();
+            return;
+        }
         if (betAmount > coins) {
             alert("Insufficient coins");
             return;
+        }else if(betAmount <= 0){
+            alert("Bet Amount Must be greater than 0");
+            return;
         }
+         
         setGemOpened(1);
         setProfitAmount(0);
         setGameOver(false);
@@ -71,6 +81,7 @@ function Mines({ updateCoins, coins }) {
         setButtonText("Cashout");
         setProfitBoxStyle("block");
         setProfitAmount(betAmount);
+        setShowCashoutBox(false);
     }
 
     function handleCellClick(row, col) {
@@ -92,25 +103,28 @@ function Mines({ updateCoins, coins }) {
             calculateProfit(gemOpened + 1, numMines, betAmount);
             setBoard(newBoard);
             gemSound.play();
+            if(numMines === (25-gemOpened)) {
+                const newBoard = board.map(row => row.map(cell => ({ ...cell })));
+                revealAllCells(newBoard);
+                cashOut()
+            };
         }
     }
 
     function calculateProfit(gemOpened, numMines, betAmount) {
         if (gemOpened <= 5) {
-            multiplier = 1;
+            setMultiplier(1.2);
         } else if (gemOpened <= 10) {
-            multiplier = 1.2;
+            setMultiplier(1.5);
         } else if (gemOpened <= 13) {
-            multiplier = 1.5;
+            setMultiplier(2);
         } else if (gemOpened <= 19) {
-            multiplier = 1.7;
+            setMultiplier(3);
         } else if (gemOpened <= 23) {
-            multiplier = 1.9;
+            setMultiplier(5);
         } else if (gemOpened <= 25) {
-            multiplier = 2.05;
-        } else {
-            multiplier = 2.05; // Default multiplier if gemOpened is greater than 25
-        }
+            setMultiplier(10);
+        } 
 
         profitVar = betAmount * (multiplier + (gemOpened / 25) * numMines);
         const roundedProfitVar = parseFloat(profitVar.toFixed(2));
@@ -158,10 +172,13 @@ function Mines({ updateCoins, coins }) {
                         <input
                             type="number"
                             value={betAmount}
-                            min={0}
+                            min={1}
                             max={1000000}
                             onChange={handleBetAmountChange}
+                            step={2}
                         />
+                        <button className='betMinMax Max' onClick={()=> {coins>1?setBetAmount(coins):setBetAmount(1)}}>Max</button>
+                        <button className='betMinMax Min' onClick={()=> {setBetAmount(1)}}>Min</button>
                     </label>
                     <label>
                         Mines: {numMines}
@@ -185,10 +202,17 @@ function Mines({ updateCoins, coins }) {
                             />
                         </label>
                     </div>
-                    <button className="start-btn" onClick={() => startGame(buttonText)}>{buttonText}</button>
+                    <button className="start-btn" onClick={startGame}>{buttonText}</button>
                 </div>
             </div>
             {gameOver && <div className="game-over">Game Over!</div>}
+            {showCashoutBox && (
+                <div className="cashout-box">
+                    <div className="multiplier">{(profitAmount/betAmount).toFixed(2)}x</div>
+                    <div className="profit">${profitAmount.toFixed(2)}</div>
+                    <button onClick={() => setShowCashoutBox(false)}>Ok</button>
+                </div>
+            )}
         </div>
     );
 }

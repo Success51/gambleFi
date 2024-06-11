@@ -6,12 +6,11 @@
     position: relative;
 }
 
-.holder .coin-display,
-.holder .points-display {
+.container{
     margin: 0 10px;
     position: relative;
     min-width: 40px;
-    height: 20px;
+    min-height: 20px;
     background-color: #5f504acd; 
     border-radius: 12px;
     padding: 10px 20px;
@@ -24,9 +23,36 @@
     font-size: 120%;
 }
 
-.holder .coin-display img,
-.holder .points-display img {
+.image{
     width: 24px;
     height: 24px;
     margin: 1px 5px 0px 0px;
+}
+
+
+.btns {
+    cursor: pointer;
+    border: none;
+    transition: all 100ms ease-in;
+    color: white;
+}
+
+.Deposit {
+    background-color: rgb(30, 223, 30);
+}
+
+.Deposit:hover {
+    background-color: rgb(30, 188, 35);
+}
+
+.Connect {
+    background-color: rgb(194, 28, 28);
+}
+
+.Connect:hover {
+    background-color: rgb(238, 8, 8);
+}
+
+.hidden{
+    display: none;
 }

@@ -86,6 +86,7 @@ h1{
     font-size: 16px;
     background-color: rgb(15 33 46);
     color: white;
+    max-width: 100%;
 }
 
 .option input[type="number"]:focus {
@@ -164,4 +165,90 @@ h1{
 
 .profitBox{
     display: none;
+}
+
+.cashout-box {
+    width: calc(5vw + 10vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 2px solid #28a745;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cashout-box .multiplier {
+    font-size: 24px;
+    font-weight: bold;
+    color: #623bff;
+    margin-bottom: 10px;
+}
+
+.cashout-box .profit {
+    font-size: 18px;
+    color: #c64444;
+}
+.cashout-box button{
+    margin-top: 10px;
+        background-color: rgb(56, 184, 30);
+        font-size: 200%;
+        font-weight: bolder;
+        font-family: monospace;
+        min-width: 50px;
+        min-height: 20px;
+        color: rgb(255, 255, 255);
+        border: none;
+        cursor: pointer;
+        border-radius: 10%;
+}
+
+.cashout-box button:hover{
+    background-color: rgb(221, 79, 32);
+    color: black;
+}
+
+
+@media only screen and (min-width: 400px) {
+    .board{
+    grid-template-columns: repeat(5, 70px); /* Adjust according to the board size */
+    }
+    .cell{
+        width: 70px;
+    }
+  }
+
+
+  label{
+    position: relative;
+    min-width: max-content;
+  }
+
+  .betMinMax{
+    border: none;
+    padding: 4px;
+    font-family: sans-serif;
+    background-color: greenyellow;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 2px;
+    right: -21px;
+    cursor: pointer;
+    min-height: 60%;
+    aspect-ratio: 1;
+    border: 1px solid black;
+}
+
+.Min{
+    right: 20px;
+}
+
+.betMinMax:hover{
+    background-color: rgb(40, 212, 40);
 }
