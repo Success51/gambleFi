@@ -29,7 +29,7 @@ function HomePage() {
 
                     <div className="game">
                         <Link to="/games/BlackJack" className='game-link'>
-                            <img src="/images/mines.png" alt="BlackJack" />
+                            <img src="/images/blackjack.jpg" alt="BlackJack" />
                             <p>BlackJack</p>
                         </Link>
                     </div>

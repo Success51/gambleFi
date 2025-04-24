@@ -1,72 +1,211 @@
-body {
-    font-family: Arial, sans-serif;
-  }
-  
-  .BlackJackPage {
-    text-align: center;
-    margin-top: 50px;
-  }
-  
+/* General page styling */
+.BlackJackPage {
+  color: #e6e6e6;
+  padding: 30px;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.hands {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.startBTN{
+  background-color: #7d83d8;
+}
+
+
+.hand {
+  width: 45%;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  background-color: #333;
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.hand.winner {
+  box-shadow: 0 0 15px #00e676, 0 0 30px rgba(0, 230, 118, 0.5);
+  border: 2px solid #00e676;
+}
+
+.bet-section {
+  width: 500px;
+  text-align: center;
+  padding: 20px;
+  background-color: #444;
+  position: relative;
+}
+
+.bet-input {
+  width: 180px;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 1px solid #666;
+  background-color: #222;
+  color: #fff;
+}
+
+.betMinMax-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+button {
+  padding: 12px 20px;
+  margin: 15px;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #777;
+}
+
+button:hover {
+  background-color: #ff4747;
+}
+
+.card {
+  display: inline-block;
+  margin: 10px;
+  padding: 25px;
+  background-color: #444;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.card.dealt {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rank {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.suit {
+  font-size: 28px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
   .hands {
-    display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hand {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .bet-section {
+    width: 90%;
     margin-top: 20px;
   }
-  
-  .hand {
-    border: 1px solid #ccc;
+
+  .bet-input {
+    width: 100%;
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 16px;
     padding: 10px;
-    width: 200px;
   }
-  
-  .cards {
-    display: flex;
-    justify-content: space-around;
-  }
-  
+
   .card {
-    width: 60px;
-    height: 90px;
-    margin: 5px;
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 5px;
+    width: 60%;
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .rank, .suit {
+    font-size: 18px;
+  }
+
+  .betMinMax-container {
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .bet-section label {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    font-size: 20px;
-    font-weight: bold;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    opacity: 0;
-    transform: translateY(-20px);
+    gap: 6px;
   }
-  
-  .card.dealt {
-    opacity: 1;
-    transform: translateY(0);
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+  .hand {
+    width: 90%;
+    margin-bottom: 15px;
   }
-  
-  .card.hidden {
-    background-color: #ccc;
+
+  .bet-section {
+    width: 100%;
+    margin-top: 15px;
+    padding: 15px;
   }
-  
-  .rank {
-    font-size: 24px;
+
+  .bet-input {
+    width: 100%;
+    font-size: 14px;
+    padding: 7px;
   }
-  
-  .suit {
-    font-size: 30px;
+
+  button {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
   }
-  
-  @keyframes deal-card {
-    0% {
-      transform: translateY(-20px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
+
+  .card {
+    width: 80%;
+    margin: 5px;
+    padding: 12px;
   }
-  
+
+  .rank, .suit {
+    font-size: 16px;
+  }
+}
+
+.Min{
+  background-color: rgb(75, 152, 116);
+  margin: 5px;
+}
+
+.Max{
+  margin: 5px;
+}
+
+.half{
+  background-color: #aab47b;
+}
+
+.double{
+  margin: 5px;
+}
+

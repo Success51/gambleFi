@@ -11,7 +11,7 @@ import BlackJack from './components/BlackJack';
 import Mining from './components/Mining';
 
 function App() {
-    const [coins, setCoins] = useState(0); // State for coins
+    const [coins, setCoins] = useState(100); // State for coins
     const [points, setPoints] = useState(0); // State for Points
 
     // Function to update coins

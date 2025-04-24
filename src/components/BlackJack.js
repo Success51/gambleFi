@@ -22,18 +22,12 @@ const shuffle = (deck) => {
   return deck;
 };
 
-const dealCard = (deck) => {
-  return deck.pop();
-};
+const dealCard = (deck) => deck.pop();
 
 const cardValue = (card) => {
-  if (card.rank === 'J' || card.rank === 'Q' || card.rank === 'K') {
-    return 10;
-  } else if (card.rank === 'A') {
-    return 11;
-  } else {
-    return parseInt(card.rank, 10);
-  }
+  if (['J', 'Q', 'K'].includes(card.rank)) return 10;
+  if (card.rank === 'A') return 11;
+  return parseInt(card.rank, 10);
 };
 
 const calculateHandValue = (hand) => {
@@ -51,36 +45,42 @@ const calculateHandValue = (hand) => {
 };
 
 const getSuitEmoji = (suit) => {
-  switch (suit) {
-    case 'Hearts':
-      return '♥️';
-    case 'Diamonds':
-      return '♦️';
-    case 'Clubs':
-      return '♣️';
-    case 'Spades':
-      return '♠️';
-    default:
-      return '';
-  }
+  const emojis = {
+    Hearts: '♥️',
+    Diamonds: '♦️',
+    Clubs: '♣️',
+    Spades: '♠️'
+  };
+  return emojis[suit] || '';
 };
 
-function BlackJack() {
+function BlackJack({ coins, points, updateCoins, updatePoints }) {
   const [deck, setDeck] = useState(initializeDeck());
   const [playerHand, setPlayerHand] = useState([]);
   const [dealerHand, setDealerHand] = useState([]);
   const [gameStatus, setGameStatus] = useState('Game in Progress');
   const [playerStood, setPlayerStood] = useState(false);
+  const [betAmount, setBetAmount] = useState('1');
+  const [betLocked, setBetLocked] = useState(false);
 
   const startGame = () => {
+    const bet = parseInt(betAmount);
+    if ( bet < 0 || bet > coins) {
+      alert(`Enter a valid bet amount. You have ${coins} coins.`);
+      return;
+    }
+
     const newDeck = initializeDeck();
     const playerStartingHand = [dealCard(newDeck), dealCard(newDeck)];
     const dealerStartingHand = [dealCard(newDeck), dealCard(newDeck)];
+
+    setDeck(newDeck);
     setPlayerHand(playerStartingHand);
     setDealerHand(dealerStartingHand);
-    setDeck(newDeck);
     setGameStatus('Game in Progress');
     setPlayerStood(false);
+    setBetLocked(true);
+    updateCoins(-bet);
   };
 
   const hit = () => {
@@ -89,7 +89,6 @@ function BlackJack() {
     const newPlayerHand = [...playerHand, dealCard(newDeck)];
     setPlayerHand(newPlayerHand);
     setDeck(newDeck);
-
     if (calculateHandValue(newPlayerHand) > 21) {
       setGameStatus('Player busts! Dealer wins.');
     }
@@ -98,49 +97,61 @@ function BlackJack() {
   const stand = async () => {
     if (gameStatus !== 'Game in Progress') return;
     setPlayerStood(true);
+
     let newDeck = [...deck];
     let newDealerHand = [...dealerHand];
-  
+
     const drawCardWithDelay = async () => {
       while (calculateHandValue(newDealerHand) < 17) {
         newDealerHand.push(dealCard(newDeck));
-        setDealerHand([...newDealerHand]); // Update dealer hand after each card is dealt
+        setDealerHand([...newDealerHand]);
         setDeck(newDeck);
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for 1 second before dealing the next card
+        await new Promise(res => setTimeout(res, 1000));
       }
     };
-  
+
     await drawCardWithDelay();
-  
+
     const playerValue = calculateHandValue(playerHand);
     const dealerValue = calculateHandValue(newDealerHand);
-  
+
     if (dealerValue > 21 || playerValue > dealerValue) {
       setGameStatus('Player wins!');
+      updateCoins(parseInt(betAmount) * 2);
     } else if (playerValue < dealerValue) {
       setGameStatus('Dealer wins!');
     } else {
       setGameStatus('It\'s a tie!');
+      updateCoins(parseInt(betAmount)); // Return bet
     }
   };
-  
+
+  const resetGame = () => {
+    setDeck(initializeDeck());
+    setPlayerHand([]);
+    setDealerHand([]);
+    setGameStatus('Game in Progress');
+    setBetLocked(false);
+    setPlayerStood(false);
+  };
 
   useEffect(() => {
-    // Add animation class after initial render
     setTimeout(() => {
       document.querySelectorAll('.card').forEach(card => {
         card.classList.add('dealt');
       });
-    }, 0);
+    }, 100);
   }, [playerHand, dealerHand]);
-
 
   return (
     <div className='BlackJackPage'>
       <h1>Blackjack</h1>
-      <button onClick={startGame}>Start Game</button>
+      <br/>
+      <br/>
+      <br/>
+
       <div className="hands">
-        <div className="hand">
+        <div className={`hand ${gameStatus.includes('Player wins') ? 'winner' : ''}`}>
           <h2>Player's Hand</h2>
           <div className="cards">
             {playerHand.map((card, index) => (
@@ -152,17 +163,50 @@ function BlackJack() {
           </div>
           <p>Value: {calculateHandValue(playerHand)}</p>
         </div>
-        <div className="hand">
+
+        {/* Place Bet Input and Buttons Between the Hands */}
+        <div className="bet-section">
+          <label>Bet Amount:
+          <input
+            type="number"
+            value={betAmount}
+            onChange={(e) => setBetAmount(e.target.value)}
+            placeholder="Enter amount"
+            className="bet-input"
+            disabled={betLocked}
+            style={{ width: '150px' }} // Making input width shorter
+          />
+          <br/>
+          <br/>
+          {gameStatus == 'Game in Progress' && (
+          <>
+                <button className='half' onClick={()=> {setBetAmount(betAmount*0.5)}}>1/2</button>
+                <button className='double' onClick={()=> {setBetAmount(betAmount*2)}}>2x</button>
+                <button className='Min' onClick={()=> {setBetAmount(1)}}>Min</button>
+                <button className='Max' onClick={()=> {coins>1?setBetAmount(coins):setBetAmount(1)}}>Max</button>
+          </>)}
+            </label><br/>
+
+          {!betLocked && <button className='startBTN' onClick={startGame}>Start Game</button>}
+          {betLocked && (
+            <>
+              <button onClick={hit} disabled={gameStatus !== 'Game in Progress'}>Hit</button>
+              <button onClick={stand} disabled={gameStatus !== 'Game in Progress'}>Stand</button>
+
+      <p>{gameStatus}</p>
+
+{gameStatus !== 'Game in Progress' && (
+  <button onClick={resetGame}>Restart Game</button>
+)}
+            </>
+              
+          )}
+        </div>
+
+        <div className={`hand ${gameStatus.includes('Dealer wins') ? 'winner' : ''}`}>
           <h2>Dealer's Hand</h2>
           <div className="cards">
             {dealerHand.map((card, index) => {
-              if (index === 1 && !playerStood) {
-                return (
-                  <div key={index} className="card hidden">
-                    ?
-                  </div>
-                );
-              }
               return (
                 <div key={index} className="card">
                   <div className="rank">{card.rank}</div>
@@ -174,9 +218,7 @@ function BlackJack() {
           <p>Value: {playerStood ? calculateHandValue(dealerHand) : calculateHandValue(dealerHand.slice(0, 1))}</p>
         </div>
       </div>
-      <p>{gameStatus}</p>
-      <button onClick={hit}>Hit</button>
-      <button onClick={stand}>Stand</button>
+
     </div>
   );
 }

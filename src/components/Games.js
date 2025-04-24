@@ -18,7 +18,7 @@ function Games() {
                     </div>
                     <div className="game">
                         <Link to="/games/blackjack" className='game-link'>
-                            <img src="/images/mines.png" alt="Black Jack" />
+                            <img src="/images/blackjack.jpg" alt="Black Jack" />
                             <p>Black Jack</p>
                         </Link>
                     </div>
