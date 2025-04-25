@@ -5,10 +5,11 @@ import HomePage from './components/HomePage';
 import Friends from './components/Friends'; 
 import Games from './components/Games'; 
 import Mines from './components/Mines'; 
-import Footer from './components/Footer';
 import Coin from './components/Coin'; // Correctly import the Coin component
 import BlackJack from './components/BlackJack';
 import Mining from './components/Mining';
+import SlotMachine from './components/SlotMachine';
+import Navbar from './components/Navbar';
 
 function App() {
     const [coins, setCoins] = useState(100); // State for coins
@@ -36,8 +37,11 @@ function App() {
                     <Route path="/mining" element={<Mining coins={coins} points={points} updateCoins={updateCoins} updatePoints={updatePoints} />} />
                     <Route path="/games/mines" element={<Mines coins={coins} points={points} updateCoins={updateCoins} updatePoints={updatePoints} />} />
                     <Route path="/games/blackjack" element={<BlackJack coins={coins} points={points} updateCoins={updateCoins} updatePoints={updatePoints} />} />
+                    <Route path="/games/slotMachine" element={<SlotMachine coins={coins} points={points} updateCoins={updateCoins} updatePoints={updatePoints} />} />
                 </Routes>
-                <Footer />
+                <div className='footer'>
+                <Navbar/>
+                </div>
             </div>
         </Router>
     );

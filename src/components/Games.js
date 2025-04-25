@@ -22,6 +22,12 @@ function Games() {
                             <p>Black Jack</p>
                         </Link>
                     </div>
+                    <div className="game">
+                        <Link to="/games/slotMachine" className='game-link'>
+                            <img src="/images/coin.png" alt="Slot Machine" />
+                            <p>Slot Machine</p>
+                        </Link>
+                    </div>
                     {/* Add more games as needed */}
                 </div>
             </section>

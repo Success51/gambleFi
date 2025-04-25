@@ -54,6 +54,7 @@ function Mines({ updateCoins, coins }) {
         setProfitBoxStyle("none");
         const newBoard = board.map(row => row.map(cell => ({ ...cell })));
         revealAllCells(newBoard);
+        setBoard(newBoard);
 
     }
 
@@ -148,15 +149,16 @@ function Mines({ updateCoins, coins }) {
     }
 
     return (
+        <>
+            <center><h1>Mines Game</h1></center>
         <div className="mines-page">
-            <h1>Mines Game</h1>
             <div className="board">
                 {board.map((row, rowIndex) => (
                     <div key={rowIndex} className="row">
                         {row.map((cell, colIndex) => (
                             <div
                                 key={colIndex}
-                                className={`cell ${cell.revealed ? 'revealed' : ''}`}
+                                className={`mineCell ${cell.revealed ? 'revealed' : ''}`}
                                 onClick={() => handleCellClick(rowIndex, colIndex)}
                             >
                                 {cell.revealed && (cell.mine ? '💣' : '💎')}
@@ -169,6 +171,7 @@ function Mines({ updateCoins, coins }) {
                 <div className="option">
                     <label>
                         Bet Amount:
+                        <br/>
                         <input
                             type="number"
                             value={betAmount}
@@ -177,8 +180,15 @@ function Mines({ updateCoins, coins }) {
                             onChange={handleBetAmountChange}
                             step={2}
                         />
-                        <button className='betMinMax Max' onClick={()=> {coins>1?setBetAmount(coins):setBetAmount(1)}}>Max</button>
-                        <button className='betMinMax Min' onClick={()=> {setBetAmount(1)}}>Min</button>
+                        <br/>
+                            <>
+                <button className='half'   disabled={hasStarted} onClick={()=> {setBetAmount(betAmount*0.5)}}>1/2</button>
+                <button className='double' disabled={hasStarted} onClick={()=> {setBetAmount(betAmount*2)}}>2x</button>
+                <button className='Min'    disabled={hasStarted} onClick={()=> {setBetAmount(1)}}>Min</button>
+                <button className='Max'    disabled={hasStarted} onClick={()=> {coins>1?setBetAmount(coins):setBetAmount(1)}}>Max</button>
+          </>
+         
+          <br/>
                     </label>
                     <label>
                         Mines: {numMines}
@@ -214,6 +224,7 @@ function Mines({ updateCoins, coins }) {
                 </div>
             )}
         </div>
+        </>
     );
 }
 

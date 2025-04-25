@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
 import CoinPurchaseModal from './CoinPurchaseModal';
 import './Coin.css';
+import Navbar from './Navbar';
+
 
 function Coin({ coins, points, updateCoins, updatePoints }) {
     const [walletAddress, setWalletAddress] = useState('');
@@ -131,10 +133,14 @@ function Coin({ coins, points, updateCoins, updatePoints }) {
 
     return (
         <div className="holder">
-            <div className="points container">
+            <div class="navBar">
+                <Navbar />
+            </div>
+            <div className='other'>
+            {/* <div className="points container">
                 <img src={"/images/mines.png"} alt="Points" className="image" />
                 <span>{points.toFixed(2)}</span>
-            </div>
+            </div> */}
             
             <div className="coin container">
                 <img src={"/images/coin.png"} alt="Coin" className="image" />
@@ -148,13 +154,15 @@ function Coin({ coins, points, updateCoins, updatePoints }) {
 
             {isModalOpen && (
                 <CoinPurchaseModal
-                    isOpen={isModalOpen}
-                    onClose={() => setIsModalOpen(false)}
-                    onBuyCoins={handleBuyCoins}
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onBuyCoins={handleBuyCoins}
                 />
             )}
+            </div>
         </div>
-    );
+);
+
 }
 
 export default Coin;

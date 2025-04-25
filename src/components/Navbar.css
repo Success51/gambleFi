@@ -1,16 +1,20 @@
-/* src/components/Footer.css */
+src/components/navbar.css
 
-.footer {
+.navbar  {
     position: fixed;
-    bottom: 0;
+    top: 0;
+    left: 0;
     width: 100%;
-    background-color: #0e0f0d;
-    color: white;
+    background-color: #f8f8f8;
+    color: #333;
     text-align: center;
     padding: 10px 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.footer nav ul {
+
+.navbar nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -18,20 +22,32 @@
     justify-content: center;
 }
 
-.footer nav ul li {
+.navbar nav ul li {
     margin: 0 15px;
 }
 
-.footer nav ul li a {
+.navbar nav ul li a {
     color: rgb(227, 171, 171);
     text-decoration: none;
     font-family: cursive;
     font-weight: bolder;
     transition: all 200ms ease-in;
     padding: 10px;
+    font-size: 25px;
 }
 
-.footer nav ul li a:hover {
+.navbar nav ul li a:hover {
     background-color: rgb(164, 164, 111);
     color: #282e23;
+}
+
+
+@media (max-width: 768px) {
+    .navbar {
+        bottom: 0;
+    }
+
+    .navbar nav ul li {
+        margin: 10px 0;
+    }
 }

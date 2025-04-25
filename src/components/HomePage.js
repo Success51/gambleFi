@@ -9,7 +9,7 @@ function HomePage() {
     return (
         <div className="home-page">
             <header className="banner">
-                <h1>Welcome to GameFi</h1>
+                <h1>Welcome to GambleFi</h1>
                 <p>Best Ever Gambling Platform </p>
             </header>
             
@@ -34,6 +34,12 @@ function HomePage() {
                         </Link>
                     </div>
 
+                    <div className="game">
+                        <Link to="/games/SlotMachine" className='game-link'>
+                            <img src="/images/coin.png" alt="Slot Machine" />
+                            <p>BlackJack</p>
+                        </Link>
+                    </div>
                 </div>
             </section>
             

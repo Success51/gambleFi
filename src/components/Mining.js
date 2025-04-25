@@ -12,7 +12,7 @@ function Mining() {
 
   return (
     <div className='miningPage'>
-      <h1>Comming Soon.</h1>
+      <h1>Comming Soon...</h1>
       </div>
   )
 }

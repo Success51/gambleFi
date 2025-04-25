@@ -6,5 +6,20 @@
 body{
   background-color:rgb(26 44 56);
   color: rgb(183, 171, 171);
-  margin-top: 10px;
+  min-height: 100vh;
+}
+
+.footer{
+  display: none;
+  background-color: black;
+  width: 100vw;
+}
+
+@media (max-width: 768px) {
+    .footer{
+      display: block;
+      position: fixed;
+      bottom: 0;
+    }
+
 }

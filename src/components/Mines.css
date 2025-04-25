@@ -1,99 +1,101 @@
 * {
     margin: 0;
     padding: 0;
-}
-
-.mines-page {
+    box-sizing: border-box;
+  }
+  
+  .mines-page {
     text-align: center;
     background-color: #1a2c38;
-    min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
-}
-
-h1{
+    justify-content: center;
+    gap: 5vw;
+    flex-wrap: wrap;
+    padding: 5vw 2vw;
+  }
+  
+  h1 {
     position: relative;
-}
-
-.board {
+  }
+  
+  .board {
     display: grid;
-    grid-template-columns: repeat(5, 16vw); /* Adjust according to the board size */
-    gap: 7px;
-}
-
-.cell {
+    grid-template-columns: repeat(5, minmax(60px, 1fr));
+    justify-items: center;
+    max-width: 100%;
+  }
+  
+  .mineCell {
     width: 16vw;
+    max-width: 100px;
     aspect-ratio: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     background-color: #2f4553;
-    font-size: 300%;
+    font-size: 4rem;
     font-weight: bold;
     transition: background-color 0.3s, transform 0.2s;
-    border: 1px solid #ccc;
+    border: 1px solid #350000;
     border-radius: 10px;
-    margin-top: 7px;
-}
-
-.cell.revealed {
+  }
+  
+  .mineCell.revealed {
     background-color: #ddd;
     cursor: default;
     color: #000;
-}
-
-.cell.mine.revealed {
+  }
+  
+  .mineCell.mine.revealed {
     background-color: #e74c3c;
     color: #2f4553;
-}
-
-.cell:hover:not(.revealed) {
+  }
+  
+  .mineCell:hover:not(.revealed) {
     background-color: #5d85bc;
     transform: scale(1.1);
-    cursor: pointer;
-}
+  }
+  
 
-.game-over {
-    margin-top: 20px;
-    font-size: 24px;
-    color: red;
-    font-weight: bold;
-}
-
-.options {
+  .options {
     margin-bottom: 20px;
-}
-
-.option {
-    margin-bottom: 10px;
-}
-
-.option label {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .option {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .option label {
     display: block;
     margin-bottom: 5px;
     color: rgb(202, 188, 188);
     font-weight: bolder;
     margin-top: 10px;
-}
-
-.option input[type="number"] {
+  }
+  
+  .option input[type="number"] {
     width: 100%;
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    background-color: rgb(15 33 46);
+    background-color: rgb(15, 33, 46);
     color: white;
-    max-width: 100%;
-}
-
-.option input[type="number"]:focus {
+  }
+  
+  .option input[type="number"]:focus {
     border-color: #007bff;
-}
-
-.place-bet-btn {
+  }
+  
+  .place-bet-btn {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -102,17 +104,18 @@ h1{
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.place-bet-btn:hover {
+  }
+  
+  .place-bet-btn:hover {
     background-color: #0056b3;
-}
-
-.sliderContainer {
+  }
+  
+  .sliderContainer {
     background-color: #007bff;
-}
-
-.slider {
+    margin-top: 10px;
+  }
+  
+  .slider {
     -webkit-appearance: none;
     width: 100%;
     height: 15px;
@@ -121,53 +124,49 @@ h1{
     outline: none;
     opacity: 0.7;
     transition: background 0.2s, opacity 0.2s;
-}
-
-.slider::-webkit-slider-thumb {
+  }
+  
+  .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 50px;
-    height: 50px;
-    background: url('/public/images/slidebarMine.png'); /* Replace 'thumb.png' with the path to your thumb image */
+    width: 40px;
+    height: 40px;
+    background: url('/public/images/slidebarMine.png');
     background-size: cover;
     cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
+  }
+  
+  .slider::-moz-range-thumb {
     width: 30px;
     height: 30px;
-    background: url('/public/images/slidebarMine.png'); /* Replace 'thumb.png' with the path to your thumb image */
+    background: url('/public/images/slidebarMine.png');
     cursor: pointer;
-}
-
-.start-btn {
-    background-color: #00ff00; /* Bright green background */
-    color: #000; /* Black text */
+  }
+  
+  .start-btn {
+    background-color: #00ff00;
+    color: #000;
     border: none;
-    border-radius: 10px; /* Rounded corners */
-    padding: 15px 30px; /* Padding for a larger button */
+    border-radius: 10px;
+    padding: 15px 30px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-    margin: 25px 0; /* Add margin for spacing */
-}
-
-.start-btn:hover {
-    background-color: #00cc00; /* Darker green on hover */
-    transform: scale(1.05); /* Slightly larger on hover */
-}
-
-.start-btn:active {
-    background-color: #009900; /* Even darker green when active */
-    transform: scale(0.95); /* Slightly smaller when clicked */
-}
-
-.profitBox{
-    display: none;
-}
-
-.cashout-box {
+    margin: 25px 0;
+  }
+  
+  .start-btn:hover {
+    background-color: #00cc00;
+    transform: scale(1.05);
+  }
+  
+  .start-btn:active {
+    background-color: #009900;
+    transform: scale(0.95);
+  }
+  
+  .cashout-box {
     width: calc(5vw + 10vh);
     display: flex;
     flex-direction: column;
@@ -182,55 +181,39 @@ h1{
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.cashout-box .multiplier {
+  }
+  
+  .cashout-box .multiplier {
     font-size: 24px;
     font-weight: bold;
     color: #623bff;
     margin-bottom: 10px;
-}
-
-.cashout-box .profit {
+  }
+  
+  .cashout-box .profit {
     font-size: 18px;
     color: #c64444;
-}
-.cashout-box button{
+  }
+  
+  .cashout-box button {
     margin-top: 10px;
-        background-color: rgb(56, 184, 30);
-        font-size: 200%;
-        font-weight: bolder;
-        font-family: monospace;
-        min-width: 50px;
-        min-height: 20px;
-        color: rgb(255, 255, 255);
-        border: none;
-        cursor: pointer;
-        border-radius: 10%;
-}
-
-.cashout-box button:hover{
+    background-color: rgb(56, 184, 30);
+    font-size: 1.5rem;
+    font-weight: bolder;
+    font-family: monospace;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10%;
+  }
+  
+  .cashout-box button:hover {
     background-color: rgb(221, 79, 32);
     color: black;
-}
-
-
-@media only screen and (min-width: 400px) {
-    .board{
-    grid-template-columns: repeat(5, 70px); /* Adjust according to the board size */
-    }
-    .cell{
-        width: 70px;
-    }
   }
-
-
-  label{
-    position: relative;
-    min-width: max-content;
-  }
-
-  .betMinMax{
+  
+  .betMinMax {
     border: none;
     padding: 4px;
     font-family: sans-serif;
@@ -243,12 +226,53 @@ h1{
     min-height: 60%;
     aspect-ratio: 1;
     border: 1px solid black;
-}
-
-.Min{
-    right: 20px;
-}
-
-.betMinMax:hover{
+  }
+  
+  .betMinMax:hover {
     background-color: rgb(40, 212, 40);
-}
+  }
+  
+  label {
+    position: relative;
+    min-width: max-content;
+  }
+  
+  /* --------- Responsive Adjustments --------- */
+  @media (max-width: 1024px) {
+    .mines-page {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .board {
+      grid-template-columns: repeat(5, minmax(50px, 1fr));
+    }
+  
+    .mineCell {
+      width: 18vw;
+      max-width: 80px;
+    }
+  
+    .options {
+      width: 100%;
+      max-width: 90vw;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .mineCell {
+      width: 19vw;
+      font-size: 1.5rem;
+    }
+  
+    .cashout-box {
+      width: 90vw;
+      padding: 15px;
+    }
+  
+    .cashout-box button {
+      font-size: 1.2rem;
+      padding: 8px 16px;
+    }
+  }
+  

@@ -1,12 +1,13 @@
-// src/components/Footer.js
+// src/components/navbar.js
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Footer.css'; // Import CSS for styling
+import './Navbar.css'; // Import CSS for styling
+import Coin from './Coin';
 
-function Footer() {
+function Navbar() {
     return (
-        <div className="footer">
+        <div className="navbar">
             <nav>
                 <ul>
                     <li><Link to="/homepage">Home</Link></li>
@@ -15,9 +16,10 @@ function Footer() {
                     <li><Link to="/mining">Mine</Link></li>
                     {/* Add more links as needed */}
                 </ul>
+
             </nav>
         </div>
     );
 }
 
-export default Footer;
+export default Navbar;

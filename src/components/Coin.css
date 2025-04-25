@@ -1,10 +1,21 @@
+
+
 .holder {
     display: flex;
     flex-direction: row;
-    width: 90vw;
-    justify-content: flex-end;
+    max-width: 100vw;
+    padding: 10px;
+    justify-content:space-between;
     position: relative;
+    background-color: black;
+    min-height: 100%;
 }
+
+.other{
+    display: flex;
+    flex-direction: row;
+}
+
 
 .container{
     margin: 0 10px;
@@ -55,4 +66,10 @@
 
 .hidden{
     display: none;
+}
+
+@media (max-width: 768px) {
+.navBar{
+    display: none;
+}
 }

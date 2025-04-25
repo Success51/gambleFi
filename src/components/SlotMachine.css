@@ -1,0 +1,131 @@
+.slot-machine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  .game-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px; /* spacing between grid and bet section */
+    margin-top: 20px;
+    overflow: hidden;
+    /* animation: roll 1s ease-in 0s infinite normal forwards; */
+  }
+  
+  .grid {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cell-row {
+    display: flex;
+  }
+  
+  .cell {
+    width: fit-content;
+    height: fit-content;
+    background-color: #222;
+    color: white;
+    border: 1px solid black;
+    border-bottom: none;
+    border-top: none;
+    padding: 2vw;
+    text-align: center;
+    font-size: 250%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    border-radius: 0;
+
+    transition: transform 0.2s ease;
+    font-size: 2rem;
+  }
+  
+  .bet-portion {
+    position: relative;
+    min-height: fit-content;
+    width: fit-content;
+    text-align: center;
+    padding: 20px;
+    background-color: #444;
+}
+  
+  button {
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #ff4747;
+  }
+  
+  button:disabled {
+    background-color: #888;
+    cursor: not-allowed;
+  }
+
+  .spinBTN{
+    background-color: rgb(235, 232, 62);
+    color: black;
+    width: 80%;
+    border-radius: 10px;
+  }
+  
+  .win-row, .win-col, .win-diag {
+    background-color: rgb(166, 92, 74);
+    color: black;
+    
+    font-weight: bold;
+    box-shadow: 0 0 10px rgb(233, 133, 10);
+  }
+
+
+  .winning-cell {
+    animation: flash 0.8s infinite alternate;
+    background-color: rgba(166, 2, 95, 0.532);
+    text-shadow: #076de3 5px 5px 5px; 
+    font-size: 30px;
+    border-radius: 10%;
+    border: none;
+  }
+  
+  @keyframes flash {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+  }
+  
+
+
+@media (max-width: 977px) {
+    .game-container{
+        flex-direction: column;
+    }
+}
+
+
+.slot-machine .grid .cell-row {
+  display: flex;
+}
+
+.spin-animation {
+  animation: spin-blur 0.75s linear infinite;
+}
+
+@keyframes spin-blur {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
